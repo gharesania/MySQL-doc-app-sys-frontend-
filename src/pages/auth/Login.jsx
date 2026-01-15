@@ -25,25 +25,15 @@ const Login = () => {
     try {
       const res = await loginUser(formData);
 
+      // ✅ THIS IS THE ONLY CORRECT CHECK
       if (res.data.success) {
-        const token = res.data.token;
-
-        // Save token (matches axios interceptor)
-        localStorage.setItem("token6163", token);
-
-        // Decode token to get role
-        const decoded = jwtDecode(token);
+        localStorage.setItem("token6163", res.data.token);
 
         toast.success(res.data.msg || "Login successful");
 
-        // Role-based redirect
-        if (decoded.role === "Admin") {
-          navigate("/admin/dashboard");
-        } else if (decoded.role === "Doctor") {
-          navigate("/doctor/dashboard");
-        } else {
-          navigate("/user/dashboard");
-        }
+        navigate("/profile"); // or dashboard redirect
+      } else {
+        toast.error(res.data.msg || "Login failed");
       }
     } catch (error) {
       toast.error(error.response?.data?.msg || "Login failed");
