@@ -1,7 +1,8 @@
 import { Nav } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import '../../styles/Sidebar.css'
-// import jwtDecode from "jwt-decode";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../../styles/Sidebar.css";
+import { jwtDecode } from "jwt-decode";
+import "../../styles/Sidebar.css";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -22,71 +23,103 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <h5 className="text-center py-3">Doctor App</h5>
-
       <Nav className="flex-column px-3">
-
         {/* ADMIN */}
         {role === "Admin" && (
           <>
-            <Nav.Link onClick={() => navigate("/admin/dashboard")}>
+            <NavLink
+              to="/admin/dashboard"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Dashboard
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/admin/users")}>
+            </NavLink>
+            <NavLink
+              to="/admin/users"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               All Users
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/admin/doctors")}>
+            </NavLink>
+            <NavLink
+              to="/admin/doctors"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               All Doctors
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/admin/doctor-applications")}>
+            </NavLink>
+            <NavLink
+              to="/admin/doctor-applications"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Doctor Applications
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/admin/appointments")}>
+            </NavLink>
+            <NavLink
+              to="/admin/appointments"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               All Appointments
-            </Nav.Link>
+            </NavLink>
           </>
         )}
 
         {/* DOCTOR */}
         {role === "Doctor" && (
           <>
-            <Nav.Link onClick={() => navigate("/doctor/dashboard")}>
+            <NavLink
+              to="/doctor/dashboard"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Dashboard
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/doctor/appointments")}>
+            </NavLink>
+            <NavLink
+              to="/doctor/appointments"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               My Appointments
-            </Nav.Link>
+            </NavLink>
           </>
         )}
 
         {/* USER */}
         {role === "User" && (
           <>
-            <Nav.Link onClick={() => navigate("/user/dashboard")}>
+            <NavLink
+              to="/user/dashboard"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Dashboard
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/user/doctors")}>
+            </NavLink>
+            <NavLink
+              to="/user/doctors"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Doctors
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/user/book-appointment")}>
+            </NavLink>
+            <NavLink
+              to="/user/book-appointment"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Book Appointment
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/user/appointments")}>
+            </NavLink>
+            <NavLink
+              to="/user/appointments"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               My Appointments
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/user/apply-doctor")}>
+            </NavLink>
+            <NavLink
+              to="/user/apply-doctor"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Apply For Doctor
-            </Nav.Link>
+            </NavLink>
           </>
         )}
 
         {/* COMMON */}
-        <Nav.Link onClick={() => navigate("/profile")}>
-          Profile
-        </Nav.Link>
+        <NavLink to="/profile">Profile</NavLink>
 
-        <Nav.Link onClick={logout} className="text-danger">
+        <button onClick={logout} className="sidebar-logout">
           Logout
-        </Nav.Link>
+        </button>
       </Nav>
     </div>
   );

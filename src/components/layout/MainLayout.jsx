@@ -1,22 +1,16 @@
-import { Container, Row, Col } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import "../../styles/Layout.css";
 
 const MainLayout = () => {
   return (
-    <Container fluid>
-      <Row>
-        {/* Sidebar */}
-        <Col md={2} className="p-0">
-          <Sidebar />
-        </Col>
+    <div className="layout">
+      <Sidebar />
 
-        {/* Main Content */}
-        <Col md={10} className="p-4">
-          <Outlet />
-        </Col>
-      </Row>
-    </Container>
+      <div className="main-content">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
