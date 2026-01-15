@@ -5,7 +5,7 @@ import { loginUser } from "../../api/authApi";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/Login.css";
 
-// import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,15 +25,25 @@ const Login = () => {
     try {
       const res = await loginUser(formData);
 
-      // ✅ THIS IS THE ONLY CORRECT CHECK
       if (res.data.success) {
-        localStorage.setItem("token6163", res.data.token);
+        const token = res.data.token;
+
+        // Save token
+        localStorage.setItem("token6163", token);
+
+        // Decode role
+        const decoded = jwtDecode(token);
 
         toast.success(res.data.msg || "Login successful");
 
-        navigate("/profile"); // or dashboard redirect
-      } else {
-        toast.error(res.data.msg || "Login failed");
+        // Role-based redirect
+        if (decoded.role === "Admin") {
+          navigate("/admin/dashboard");
+        } else if (decoded.role === "Doctor") {
+          navigate("/doctor/dashboard");
+        } else {
+          navigate("/user/dashboard");
+        }
       }
     } catch (error) {
       toast.error(error.response?.data?.msg || "Login failed");
