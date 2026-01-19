@@ -62,8 +62,8 @@ const AllAppointments = () => {
                   <tr key={appt.id}>
                     <td>{index + 1}</td>
                     <td>{appt.id}</td>
-                    <td>{appt.createdBy}</td>
-                    <td>{appt.doctorId}</td>
+                    <td>{appt.patient?.name}</td>
+                    <td>{appt.doctor?.name}</td>
                     <td>{new Date(appt.dateTime).toLocaleString()}</td>
                     <td>{statusBadge(appt.status)}</td>
                   </tr>

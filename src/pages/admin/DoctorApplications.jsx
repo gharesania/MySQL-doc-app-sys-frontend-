@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Table, Card, Button, Badge } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { updateDoctorStatus } from "../../api/doctorApi";
+import { updateDoctorStatus } from "../../api/doctorAPI";
 import axiosInstance from "../../api/axiosInstance";
-
 
 const DoctorApplications = () => {
   const [applications, setApplications] = useState([]);
 
   const fetchApplications = async () => {
     try {
-      // Admin API to fetch all doctor applications
       const res = await axiosInstance.get("/doctor/applications");
 
       if (res.data.success) {
@@ -62,6 +60,8 @@ const DoctorApplications = () => {
               <tr>
                 <th>#</th>
                 <th>Application ID</th>
+                <th>Doctor Name</th>
+                <th>Email</th>
                 <th>Specialist</th>
                 <th>Fees</th>
                 <th>Status</th>
@@ -75,6 +75,8 @@ const DoctorApplications = () => {
                   <tr key={app.id}>
                     <td>{index + 1}</td>
                     <td>{app.id}</td>
+                    <td>{app.User?.name || "N/A"}</td>
+                    <td>{app.User?.email || "N/A"}</td>
                     <td>{app.specialist}</td>
                     <td>{app.fees}</td>
                     <td>{statusBadge(app.status)}</td>
@@ -108,7 +110,7 @@ const DoctorApplications = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="text-center">
+                  <td colSpan="8" className="text-center">
                     No doctor applications found
                   </td>
                 </tr>
