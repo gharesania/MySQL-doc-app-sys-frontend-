@@ -1,4 +1,5 @@
-import axiosInstance from "./axios";
+import axiosInstance from "../api/axiosInstance";
+
 
 export const getAdminDashboard = () => {
   return axiosInstance.get("/dashboard/admin");

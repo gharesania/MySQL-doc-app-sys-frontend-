@@ -1,21 +1,18 @@
-import axiosInstance from "./axios";
+import axiosInstance from "../api/axiosInstance";
 
-export const applyForDoctor = (data) => {
-  return axiosInstance.post("/doctor/applyForDoctor", data);
+
+export const getUserInfo = () => {
+  return axiosInstance.get("/user/getUserInfo");
 };
 
-export const updateDoctorStatus = (doctorId, data) => {
-  return axiosInstance.post(`/doctor/doctorStatus/${doctorId}`, data);
+export const updateUser = (data) => {
+  return axiosInstance.put("/user/updateUser", data);
 };
 
-export const getMyDoctorApplication = () => {
-  return axiosInstance.get("/doctor/my-application");
+export const getUserList = () => {
+  return axiosInstance.get("/user/userList");
 };
 
-export const updateDoctor = (id, data) => {
-  return axiosInstance.patch(`/doctor/update/${id}`, data);
-};
-
-export const deleteDoctor = (id) => {
-  return axiosInstance.delete(`/doctor/delete/${id}`);
+export const getDoctorList = () => {
+  return axiosInstance.get("/user/doctorList");
 };

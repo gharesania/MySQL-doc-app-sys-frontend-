@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const logout = () => {
     localStorage.removeItem("token6163");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -87,12 +87,12 @@ const Sidebar = () => {
             >
               Dashboard
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/user/doctors"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               Doctors
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/user/book-appointment"
               className={({ isActive }) => (isActive ? "active" : "")}

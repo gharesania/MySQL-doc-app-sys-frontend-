@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 const RoleGuard = ({ allowedRoles }) => {
   const token = localStorage.getItem("token6163");

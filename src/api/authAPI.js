@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "../api/axiosInstance";
 
 export const registerUser = (data) => {
   return axiosInstance.post("/user/register", data);
